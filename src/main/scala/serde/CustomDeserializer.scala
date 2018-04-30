@@ -1,6 +1,9 @@
+package serde
+
 import java.io.{ByteArrayInputStream, ObjectInputStream}
 import java.util
 
+import Models.Student
 import org.apache.kafka.common.serialization.Deserializer
 
 class CustomDeserializer extends Deserializer[Student] {
