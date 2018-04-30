@@ -1,3 +1,5 @@
+package Models
+
 case class Student(id: Int, name: String) {
 
   override def toString: String = {

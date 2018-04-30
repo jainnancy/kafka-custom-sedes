@@ -1,3 +1,5 @@
+package serde
+
 import java.io.{ByteArrayOutputStream, ObjectOutputStream}
 import java.util
 
