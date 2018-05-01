@@ -28,6 +28,6 @@ class CustomProducer {
 
 }
 object ProducerMain extends App {
-  val topicName = "demo-topics"
+  val topicName = (ConfigFactory.load().getString("TOPIC"))
   (new CustomProducer).writeToKafka(topicName)
 }
