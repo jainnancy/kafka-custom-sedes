@@ -14,21 +14,12 @@ class CustomConsumer {
   val props = new Properties()
   val config = ConfigFactory.load()
 
-<<<<<<< HEAD
-  props.put("bootstrap.servers", "localhost:9092")
-  props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
-  props.put("value.deserializer", "serde.CustomDeserializer")
-  props.put("group.id", "something")
-  props.put("enable.auto.commit", "false")
-  props.put("auto.offset.reset", "earliest")
-=======
   props.put("bootstrap.servers", config.getString("BOOTSTRAP_SERVER"))
   props.put("key.deserializer", config.getString("DESERIALIZER"))
   props.put("value.deserializer", config.getString("VALUE_DESERIALIZER"))
   props.put("group.id", config.getString("GROUP_ID"))
   props.put("enable.auto.commit", "false")
   props.put("auto.offset.reset", config.getString("OFFSET"))
->>>>>>> f18ed88872b11bc8f03510391d5344f8c3053f73
 
   val consumer = new KafkaConsumer[String, String](props)
 
@@ -37,8 +28,7 @@ class CustomConsumer {
     while (true) {
       val records = consumer.poll(5000)
       for (record <- records.asScala) {
-        log.info("received message")
-        log.info(record.value)
+        log.info(s"received message- key: ${record.key} value: ${record.value}")
       }
     }
   }

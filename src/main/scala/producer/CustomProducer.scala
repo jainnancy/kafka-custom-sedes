@@ -11,16 +11,6 @@ class CustomProducer {
 
   val log = Logger.getLogger(this.getClass)
   val props = new Properties()
-<<<<<<< HEAD
-
-  props.put("bootstrap.servers", "localhost:9092")
-  props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
-  props.put("value.serializer", "serde.CustomSerializer")
-
-  val producer = new KafkaProducer[String, Student](props)
-  val student = new Student(1, "Nancy")
-  writeToKafka(student)
-=======
   val config = ConfigFactory.load()
 
   props.put("bootstrap.servers", config.getString("BOOTSTRAP_SERVER"))
@@ -28,12 +18,11 @@ class CustomProducer {
   props.put("value.serializer", config.getString("VALUE_SERIALIZER"))
 
   val producer = new KafkaProducer[String, Student](props)
->>>>>>> f18ed88872b11bc8f03510391d5344f8c3053f73
 
-  def writeToKafka(topic: String, student: Student) {
-    val studentRecord = new ProducerRecord[String, Student](topic, "key", student)
-    producer.send(studentRecord)
-    log.info(s"Student record has been sent")
+  def writeToKafka(topic: String) {
+    for (i <- 1 to 100)
+      producer.send(new ProducerRecord[String, Student](topic, i.toString, Student(i, s"name-$i")))
+    log.info(s"Record has been written to kafka.")
   }
 
   producer.close()
@@ -41,6 +30,5 @@ class CustomProducer {
 
 object ProducerMain extends App {
   val topicName = "demo-topic"
-  val student = new Student(1, "Nancy")
-  (new CustomProducer).writeToKafka(topicName, student)
+  (new CustomProducer).writeToKafka(topicName)
 }

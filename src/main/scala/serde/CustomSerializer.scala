@@ -3,11 +3,7 @@ package serde
 import java.io.{ByteArrayOutputStream, ObjectOutputStream}
 import java.util
 
-<<<<<<< HEAD
-import Models.Student
-=======
 import models.Student
->>>>>>> f18ed88872b11bc8f03510391d5344f8c3053f73
 import org.apache.kafka.common.serialization.Serializer
 
 class CustomSerializer extends Serializer[Student] {
@@ -18,13 +14,17 @@ class CustomSerializer extends Serializer[Student] {
 
   override def serialize(topic: String, data: Student): Array[Byte] = {
 
-    if (data == null)
-      System.out.print("Now data to serialize")
-
-    val byteOutputStream = new ByteArrayOutputStream()
-    val objectSerialized = new ObjectOutputStream(byteOutputStream)
-    objectSerialized.writeObject(data)
-    byteOutputStream.toByteArray
+    try {
+      val byteOutputStream = new ByteArrayOutputStream()
+      val objectSerialized = new ObjectOutputStream(byteOutputStream)
+      objectSerialized.writeObject(data)
+      byteOutputStream.close()
+      objectSerialized.close()
+      byteOutputStream.toByteArray
+    }
+    catch {
+      case ex: Exception => throw new Exception(ex.getMessage)
+    }
   }
 
   override def close(): Unit = {
