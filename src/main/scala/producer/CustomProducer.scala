@@ -22,13 +22,12 @@ class CustomProducer {
   def writeToKafka(topic: String) {
     for (i <- 1 to 100)
       producer.send(new ProducerRecord[String, Student](topic, i.toString, Student(i, s"name-$i")))
-    log.info(s"Record has been written to kafka.")
+    log.info(s"Record has been written to kafka.\n")
+    producer.close()
   }
 
-  producer.close()
 }
-
 object ProducerMain extends App {
-  val topicName = "demo-topic"
+  val topicName = "demo-topics"
   (new CustomProducer).writeToKafka(topicName)
 }
