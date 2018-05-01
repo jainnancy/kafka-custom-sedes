@@ -36,6 +36,6 @@ class CustomConsumer {
 }
 
 object ConsumerMain extends App {
-  val topicName = (ConfigFactory.load().getString("TOPIC"))
-  (new CustomConsumer).readFromKafka(topicName)
+  val topic = ConfigFactory.load().getString("TOPIC")
+  (new CustomConsumer).readFromKafka(topic)
 }
