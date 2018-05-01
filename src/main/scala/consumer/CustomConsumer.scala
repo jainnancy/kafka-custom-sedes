@@ -28,8 +28,7 @@ class CustomConsumer {
     while (true) {
       val records = consumer.poll(5000)
       for (record <- records.asScala) {
-        log.info("received message")
-        log.info(record.value)
+        log.info(s"received message ${record.value}")
       }
     }
   }
@@ -37,6 +36,6 @@ class CustomConsumer {
 }
 
 object ConsumerMain extends App {
-  val topicName = "demo-topic"
-  (new CustomConsumer).readFromKafka(topicName)
+  val topic = ConfigFactory.load().getString("TOPIC")
+  (new CustomConsumer).readFromKafka(topic)
 }
