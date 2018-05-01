@@ -16,8 +16,8 @@ object CustomConsumer {
   props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
   props.put("value.deserializer", "serde.CustomDeserializer")
   props.put("group.id", "something")
-  props.put("enable.auto.commit","false")
-  props.put("auto.offset.reset","earliest")
+  props.put("enable.auto.commit", "false")
+  props.put("auto.offset.reset", "earliest")
 
   val consumer = new KafkaConsumer[String, String](props)
 

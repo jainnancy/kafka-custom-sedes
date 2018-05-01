@@ -4,7 +4,7 @@
 		module="kafka-custom-sedes_2.12"
 		revision="0.1"
 		status="integration"
-		publication="20180429013141"
+		publication="20180501130315"
 	>
 		<description>
 		kafka-custom-sedes

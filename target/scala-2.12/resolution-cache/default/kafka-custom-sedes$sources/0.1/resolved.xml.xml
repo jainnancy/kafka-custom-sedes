@@ -4,7 +4,7 @@
 		module="kafka-custom-sedes$sources"
 		revision="0.1"
 		status="integration"
-		publication="20180429013142"
+		publication="20180501130317"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>
