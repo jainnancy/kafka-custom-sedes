@@ -22,4 +22,5 @@ class CustomDeserializer extends Deserializer[Student] {
     val objectDeserialized = inputObject.readObject().asInstanceOf[Student]
     objectDeserialized
   }
+
 }

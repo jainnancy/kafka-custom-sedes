@@ -24,4 +24,5 @@ class CustomSerializer extends Serializer[Student] {
 
   override def close(): Unit = {
   }
+
 }

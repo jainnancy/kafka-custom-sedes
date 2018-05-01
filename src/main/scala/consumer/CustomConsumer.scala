@@ -28,7 +28,7 @@ class CustomConsumer {
     while (true) {
       val records = consumer.poll(5000)
       for (record <- records.asScala) {
-        log.info(s"received message ${record.value}")
+        log.info(s"\nreceived message ${record.value}")
       }
     }
   }
