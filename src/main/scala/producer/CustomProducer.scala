@@ -19,9 +19,11 @@ class CustomProducer {
 
   val producer = new KafkaProducer[String, Student](props)
 
-  def writeToKafka(topic: String, student: Student) {
-    val studentRecord = new ProducerRecord[String, Student](topic, student.id.toString, student)
-    producer.send(studentRecord)
+  def writeToKafka(topic: String) {
+    for (i <- 1 to 100) {
+      val studentRecord = new ProducerRecord[String, Student](topic, i.toString, Student(i, s"name-$i"))
+      producer.send(studentRecord)
+    }
     log.info(s"Student record has been sent")
     producer.close()
   }
@@ -30,6 +32,5 @@ class CustomProducer {
 
 object ProducerMain extends App {
   val topic = ConfigFactory.load().getString("TOPIC")
-  val student = new Student(1, "Nancy")
-  (new CustomProducer).writeToKafka(topic, student)
+  (new CustomProducer).writeToKafka(topic)
 }
