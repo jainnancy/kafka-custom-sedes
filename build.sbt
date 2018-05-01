@@ -1,13 +1,22 @@
-name := "kafka-custom-sedes"
+name := "kafka-custom-serdes"
 
 version := "0.1"
 
 scalaVersion := "2.12.6"
 
-libraryDependencies  +=  "org.apache.kafka" % "kafka-clients" % "0.11.0.0"
+libraryDependencies ++= Seq(
 
-libraryDependencies += "log4j" % "log4j" % "1.2.17"
+  //kafka
+  "org.apache.kafka" % "kafka-clients" % "1.0.0",
 
-libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.13.4" % "test"
+  //log4j
+  "log4j" % "log4j" % "1.2.17",
 
-libraryDependencies += "org.slf4j" % "slf4j-log4j12" % "1.8.0-beta1" % Test
+  "org.scalacheck" %% "scalacheck" % "1.13.4" % "test",
+
+  //slf4j
+  "org.slf4j" % "slf4j-log4j12" % "1.8.0-beta1" % Test,
+
+  //typesafe
+  "com.typesafe" % "config" % "1.2.1"
+)
