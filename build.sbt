@@ -15,7 +15,7 @@ libraryDependencies ++= Seq(
   "org.scalacheck" %% "scalacheck" % "1.13.4" % "test",
 
   //slf4j
-  "org.slf4j" % "slf4j-log4j12" % "1.8.0-beta1" % Test,
+  "org.slf4j" % "slf4j-simple" % "1.7.25",
 
   //typesafe
   "com.typesafe" % "config" % "1.2.1"
