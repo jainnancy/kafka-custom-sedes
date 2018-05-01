@@ -3,7 +3,11 @@ package serde
 import java.io.{ByteArrayOutputStream, ObjectOutputStream}
 import java.util
 
+<<<<<<< HEAD
 import Models.Student
+=======
+import models.Student
+>>>>>>> f18ed88872b11bc8f03510391d5344f8c3053f73
 import org.apache.kafka.common.serialization.Serializer
 
 class CustomSerializer extends Serializer[Student] {
