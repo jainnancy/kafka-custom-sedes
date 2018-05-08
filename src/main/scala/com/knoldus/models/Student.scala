@@ -1,4 +1,4 @@
-package models
+package com.knoldus.models
 
 case class Student(id: Int, name: String) {
 

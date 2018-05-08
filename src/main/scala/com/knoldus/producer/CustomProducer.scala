@@ -1,9 +1,10 @@
-package producer
+package com.knoldus.producer
 
 import java.util.Properties
 
+import com.knoldus.models.Student
+import com.knoldus.utilities.ApplicationConfig._
 import com.typesafe.config.ConfigFactory
-import models.Student
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 import org.apache.log4j.Logger
 
@@ -13,9 +14,9 @@ class CustomProducer {
   val props = new Properties()
   val config = ConfigFactory.load()
 
-  props.put("bootstrap.servers", config.getString("BOOTSTRAP_SERVER"))
-  props.put("key.serializer", config.getString("SERIALIZER"))
-  props.put("value.serializer", config.getString("VALUE_SERIALIZER"))
+  props.put("bootstrap.servers", bootstrapServer)
+  props.put("key.serializer", keySerializer)
+  props.put("value.serializer", valueSerializer)
 
   val producer = new KafkaProducer[String, Student](props)
 
@@ -27,7 +28,8 @@ class CustomProducer {
   }
 
 }
+
 object ProducerMain extends App {
-  val topic = ConfigFactory.load().getString("TOPIC")
+  val topic = topicName
   (new CustomProducer).writeToKafka(topic)
 }

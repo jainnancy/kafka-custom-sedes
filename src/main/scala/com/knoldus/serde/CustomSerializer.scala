@@ -1,9 +1,9 @@
-package serde
+package com.knoldus.serde
 
 import java.io.{ByteArrayOutputStream, ObjectOutputStream}
 import java.util
 
-import models.Student
+import com.knoldus.models.Student
 import org.apache.kafka.common.serialization.Serializer
 
 class CustomSerializer extends Serializer[Student] {
@@ -17,8 +17,6 @@ class CustomSerializer extends Serializer[Student] {
       val byteOutputStream = new ByteArrayOutputStream()
       val objectSerialized = new ObjectOutputStream(byteOutputStream)
       objectSerialized.writeObject(data)
-      byteOutputStream.close()
-      objectSerialized.close()
       byteOutputStream.toByteArray
     }
     catch {
