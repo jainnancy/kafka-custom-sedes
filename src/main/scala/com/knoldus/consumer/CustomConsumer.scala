@@ -3,7 +3,7 @@ package com.knoldus.consumer
 import java.util.{Collections, Properties}
 
 import com.knoldus.ApplicationConfig._
-import com.knoldus.models.Student
+import com.knoldus.models.{Student, Teacher}
 import com.typesafe.config.ConfigFactory
 import org.apache.kafka.clients.consumer.{ConsumerRecords, KafkaConsumer}
 import org.apache.log4j.Logger
